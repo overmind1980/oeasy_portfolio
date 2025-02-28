@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF - 8">
+    <title>近三年GDP数据展示</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background - color: white;
+        }
+
+        h1 {
+            font - family: '黑体';
+            color: black;
+            text - align: center;
+            margin - top: 20px;
+        }
+
+        p {
+            font - family: '宋体';
+            color: black;
+            text - align: center;
+            margin - bottom: 10px;
+        }
+
+        #gdp - chart {
+            width: 100%;
+            height: 60vh;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>近三年GDP数据展示</h1>
+    <p>以下数据展示近三年的GDP情况</p>
+    <div id="gdp - chart"></div>
+    <script>
+        // 近三年GDP数据
+        let gdpData = [
+            { year: '2023', value: 120000 },
+            { year: '2022', value: 100000 },
+            { year: '2021', value: 90000 }
+        ];
+
+        // 初始化Echarts实例
+        let myChart = echarts.init(document.getElementById('gdp - chart'));
+
+        // 配置图表
+        let option = {
+            tooltip: {
+                trigger: 'mouseover'
+            },
+            xAxis: {
+                type: 'category',
+                data: gdpData.map(item => item.year)
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: 'GDP',
+                    type: 'bar',
+                    data: gdpData.map(item => item.value),
+                    itemStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            { offset: 0, color: '#188df0' },
+                            { offset: 1, color: '#50bfff' }
+                        ])
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>
